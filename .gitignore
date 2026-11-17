@@ -1,0 +1,14 @@
+# Your business files stay on your computer. They are never pushed to GitHub.
+# (Remove these lines only if you back up to a PRIVATE repository.)
+/business/
+/departments/
+/outputs/
+/memory/
+
+# Keys and passwords
+/.env
+
+# System clutter
+.DS_Store
+Thumbs.db
+__pycache__/

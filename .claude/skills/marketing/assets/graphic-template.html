@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<!--
+  BRANDED GRAPHIC TEMPLATE
+
+  How the brain uses this file (see workflows/branded-graphic.md):
+  1. Never edit this file. Copy it to outputs/marketing/YYYY-MM-DD-<name>.html and edit the copy.
+  2. Fill the CSS variables in :root from business/brand.md:
+       --primary, --secondary, --accent, --background, --text  (hex colours)
+       --font-heading, --font-body                               (font names, with the fallbacks kept)
+     If a brand font is a Google Font, uncomment the Google Fonts <link> in <head> and put the
+     font names in its URL. Otherwise leave it commented out: the page then makes no outside requests.
+  3. Size: 1080 x 1350 portrait by default. For square use 1080 x 1080, for stories or reel
+     covers use 1080 x 1920 (change --canvas-width and --canvas-height).
+  4. Fill each slide: heading, body, footer (business name or @handle). The body is optional:
+     delete the <p class="body"> line if the slide doesn't need it. For the logo, set the
+     <img> src to ../../business/brand-assets/<file>. If there is no logo, delete the <img> line.
+     Brand rules win: if "Visual do and don't" in business/brand.md says, for example, one line
+     of text only or no more than two colours, follow it over these defaults (drop the body,
+     set unused colour variables to an allowed colour).
+  5. Carousel: copy the whole <div class="frame">...</div> block once per slide (see the
+     commented second slide below) and update the slide numbers. Single image: one block only,
+     and delete the slide-number line.
+  6. The owner opens the copy in a browser and screenshots each slide.
+     Mac: Cmd + Shift + 4, then drag around the slide. Windows: Windows key + Shift + S, then drag.
+  7. In the copy, delete this whole instruction comment, and delete the commented SLIDE 2
+     example unless you used it. The finished file should hold only the slides.
+  The canvas scales to fit the browser window. Most modern screens (such as a Mac's Retina
+  screen) give a sharp enough screenshot for social media. For print, or an exact pixel size,
+  use Canva instead.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Branded graphic</title>
+
+  <!-- Optional Google Fonts. Uncomment and replace the font names (spaces become +).
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heading+Font:wght@700&family=Body+Font:wght@400;500&display=swap">
+  -->
+
+  <style>
+    :root {
+      /* Brand: filled from business/brand.md */
+      --primary: #1f3a5f;
+      --secondary: #5b6b7f;
+      --accent: #e8a33d;
+      --background: #f7f4ee;
+      --text: #1d1d1f;
+      --font-heading: "Georgia", "Times New Roman", serif;
+      --font-body: "Helvetica Neue", Arial, sans-serif;
+
+      /* Canvas size */
+      --canvas-width: 1080px;
+      --canvas-height: 1350px;
+
+      /* Set by the script below to fit the window. 0.5 if scripts are off. */
+      --scale: 0.5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: #d9d9d9;
+      min-height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      padding: 24px;
+    }
+
+    /* The frame takes up the scaled size; the slide inside stays full size and is scaled down. */
+    .frame {
+      width: calc(var(--canvas-width) * var(--scale));
+      height: calc(var(--canvas-height) * var(--scale));
+      flex: none;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .slide {
+      width: var(--canvas-width);
+      height: var(--canvas-height);
+      transform: scale(var(--scale));
+      transform-origin: top left;
+      background: var(--background);
+      color: var(--text);
+      font-family: var(--font-body);
+      padding: 112px 104px 96px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+    }
+
+    .accent-bar {
+      width: 120px;
+      height: 12px;
+      border-radius: 6px;
+      background: var(--accent);
+    }
+
+    .logo {
+      max-height: 72px;
+      max-width: 240px;
+      object-fit: contain;
+    }
+
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 48px;
+    }
+
+    .heading {
+      font-family: var(--font-heading);
+      color: var(--primary);
+      font-size: 92px;
+      line-height: 1.08;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .body {
+      font-size: 44px;
+      line-height: 1.4;
+      max-width: 820px;
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 40px;
+      border-top: 3px solid var(--accent);
+      /* The text colour, slightly faded, so the footer stays readable on any background.
+         Don't use --secondary here: on light brands it can all but vanish. */
+      color: var(--text);
+      color: color-mix(in srgb, var(--text) 70%, transparent);
+      font-size: 32px;
+      font-weight: 500;
+    }
+
+    .slide-number {
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SLIDE 1 -->
+  <div class="frame">
+    <section class="slide">
+      <div class="top">
+        <div class="accent-bar"></div>
+        <img class="logo" src="../../business/brand-assets/logo.png" alt="Business logo" onerror="this.remove()">
+      </div>
+      <div class="content">
+        <h1 class="heading">Heading goes here, eight words or fewer</h1>
+        <p class="body">Body text goes here. One short point, under about thirty words, that backs up the heading.</p>
+      </div>
+      <div class="footer">
+        <span class="handle">Business name or @handle</span>
+        <span class="slide-number">1 / 1</span>
+      </div>
+    </section>
+  </div>
+
+  <!-- SLIDE 2: carousel pattern. Copy this block once per extra slide, remove the comment
+       markers around it, and update the slide numbers on every slide (1 / 3, 2 / 3, 3 / 3).
+  <div class="frame">
+    <section class="slide">
+      <div class="top">
+        <div class="accent-bar"></div>
+        <img class="logo" src="../../business/brand-assets/logo.png" alt="Business logo" onerror="this.remove()">
+      </div>
+      <div class="content">
+        <h2 class="heading">One point per slide</h2>
+        <p class="body">A short line that explains this point. The last slide gives the reader one next step.</p>
+      </div>
+      <div class="footer">
+        <span class="handle">Business name or @handle</span>
+        <span class="slide-number">2 / 2</span>
+      </div>
+    </section>
+  </div>
+  -->
+
+  <script>
+    // Scale every slide to fit the browser window. Runs on load and when the window is resized.
+    function fit() {
+      var styles = getComputedStyle(document.documentElement);
+      var w = parseFloat(styles.getPropertyValue("--canvas-width"));
+      var h = parseFloat(styles.getPropertyValue("--canvas-height"));
+      var scale = Math.min((window.innerWidth - 48) / w, (window.innerHeight - 48) / h, 1);
+      document.documentElement.style.setProperty("--scale", Math.max(scale, 0.1).toFixed(4));
+    }
+    window.addEventListener("resize", fit);
+    fit();
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "WebSearch",
+      "WebFetch",
+      "Edit(./business/**)",
+      "Edit(./departments/**)",
+      "Edit(./outputs/**)",
+      "Edit(./memory/**)",
+      "Write(./business/**)",
+      "Write(./departments/**)",
+      "Write(./outputs/**)",
+      "Write(./memory/**)",
+      "Bash(mkdir -p business*)",
+      "Bash(mkdir -p departments*)",
+      "Bash(mkdir -p outputs*)",
+      "Bash(mkdir -p memory*)",
+      "Bash(date*)"
+    ],
+    "deny": [
+      "Read(./.env)"
+    ]
+  }
+}
